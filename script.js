@@ -35,7 +35,7 @@ fetch("./assets/JSON.json")
             leftDiv.appendChild(img);
 
             var rightDiv = document.createElement("div")
-            rightDiv.className = "rightDiv"
+            rightDiv.className = "rightWrap"
             div.appendChild(rightDiv)
 
             var bookTitle = document.createElement("h2")
@@ -54,10 +54,25 @@ fetch("./assets/JSON.json")
             rightDiv.appendChild(h4)
             h4.innerHTML = ` ${apiData.price}` + " USD"
 
-       
+            var buttonDiv = document.createElement("div");
+            buttonDiv.style = "button-div";
+            rightDiv.appendChild(buttonDiv);
+            
+
+            var ShowMoreBtn = document.createElement("button");
+            ShowMoreBtn.className = "showMoreBtn";
+            ShowMoreBtn.textContent = "Show more ";
+            buttonDiv.appendChild(ShowMoreBtn)
+            
+            var addCartBtn = document.createElement("button");
+            addCartBtn.className = "add-cart-btn";
+            addCartBtn.textContent = "add To Cart";
+            buttonDiv.appendChild(addCartBtn);
+
         })
         
     });
+
 
 
 
