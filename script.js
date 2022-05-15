@@ -1,5 +1,5 @@
-const main = document.getElementById("wrap")
-wrap.className ="main-wrap"
+// const main = document.getElementById("wrap")
+// wrap.className ="main-wrap"
 
 fetch("./assets/JSON.json")
     .then(response =>{
@@ -16,8 +16,7 @@ fetch("./assets/JSON.json")
         
         content.map(function(apiData) {
           
-            // wrap.innerHTML = `${apiData.title}`
-
+            var wrap =document.createElement("main")
             var div = document.createElement("div")
             div.id = "book-wrap";
             div.className = "Book-wrap";
@@ -52,7 +51,7 @@ fetch("./assets/JSON.json")
             h4.className = "h4"
             h4.id = "h4"
             rightDiv.appendChild(h4)
-            h4.innerHTML = ` ${apiData.price}` + " USD"
+            h4.innerHTML = ` ${apiData.price}` + " $"
 
             var buttonDiv = document.createElement("div");
             buttonDiv.style = "button-div";
