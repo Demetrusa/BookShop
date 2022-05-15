@@ -1,5 +1,4 @@
-// const main = document.getElementById("wrap")
-// wrap.className ="main-wrap"
+
 
 fetch("./assets/JSON.json")
     .then(response =>{
@@ -15,18 +14,24 @@ fetch("./assets/JSON.json")
         console.log(content)
         
         content.map(function(apiData) {
-          
+
             var wrap =document.createElement("main")
+            
+   
+            var mainDiv = document.createElement("div")
+            mainDiv.classList= "main-div"
+            wrap.appendChild(mainDiv);
+            document.getElementsByTagName("body")[0].appendChild(mainDiv);
+
             var div = document.createElement("div")
             div.id = "book-wrap";
             div.className = "Book-wrap";
-            document.getElementsByTagName("body")[0].appendChild(div);
+            mainDiv.appendChild(div)
 
             var leftDiv = document.createElement("div")
             leftDiv.className = "Left-wrap";
             div.appendChild(leftDiv)
-
-           
+            
 
             var img = document.createElement("img")
             img.className = "bookImg";
@@ -52,26 +57,74 @@ fetch("./assets/JSON.json")
             h4.id = "h4"
             rightDiv.appendChild(h4)
             h4.innerHTML = ` ${apiData.price}` + " $"
+            
+            // button section
 
             var buttonDiv = document.createElement("div");
             buttonDiv.style = "button-div";
             rightDiv.appendChild(buttonDiv);
             
 
-            var ShowMoreBtn = document.createElement("button");
-            ShowMoreBtn.className = "showMoreBtn";
-            ShowMoreBtn.textContent = "Show more ";
-            buttonDiv.appendChild(ShowMoreBtn)
+            var showMoreBtn = document.createElement("button");
+            showMoreBtn.className = "showMoreBtn";
+            showMoreBtn.textContent = "Show more ";
+            buttonDiv.appendChild(showMoreBtn);
             
             var addCartBtn = document.createElement("button");
             addCartBtn.className = "add-cart-btn";
             addCartBtn.textContent = "add To Cart";
             buttonDiv.appendChild(addCartBtn);
 
+               // Modal section 
+    
+            var modal = document.createElement("div");
+            modal.className = "modal";
+            modal.id = "myModal";
+
+            document.getElementsByTagName("body")[0].appendChild(modal);
+
+            var modalContent = document.createElement("div");
+            modalContent.className = "modal-content";
+            modal.appendChild(modalContent);
+
+            var modalImg =document.createElement("img");
+            modalImg.className ="modal-img";
+            modalImg.src=`${apiData.imageLink}`;
+            modalContent.appendChild(modalImg);
+            
+            var modalRightWrap = document.createElement("div")
+            modalRightWrap.className = "modal-right-wrap";
+            modalContent.appendChild(modalRightWrap);
+
+            var modalAuthor = document.createElement("h2");
+            modalAuthor.className = "modal-title";
+            modalAuthor.innerHTML = `${apiData.author}`
+            modalRightWrap.appendChild(modalAuthor);
+
+            var modalText = document.createElement("p");
+            modalText.className="modal-text";
+            modalText.innerHTML = `${apiData.description}`
+            modalRightWrap.appendChild(modalText);
+
+            var close = document.createElement("span");
+            close.className = "close";
+            close.textContent= "X"
+            modalContent.appendChild(close);
+
+            // button click
+                    
+            showMoreBtn.onclick = function(){
+                modal.style.display = "block";
+            }
+            close.onclick = function(){
+                modal.style.display = "none";
+            }
+           window.onclick = function(event) {
+               modal.style.display = "none";
+           }
         })
         
     });
 
 
-
-
+ 
