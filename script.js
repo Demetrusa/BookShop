@@ -8,10 +8,8 @@ fetch("./assets/JSON.json")
         return response.json()
     })
     .then((data) => {
-        console.log(data)
         
         let content = data;
-        console.log(content)
         
         content.map(function(apiData) {
 
@@ -23,21 +21,27 @@ fetch("./assets/JSON.json")
             wrap.appendChild(mainDiv);
             document.getElementsByTagName("body")[0].appendChild(mainDiv);
 
+                // var pageHeading = document.createElement("h1")
+                // pageHeading.className = "page-heading";
+                // pageHeading.textContent = "BookShop";
+                // body.appendChild(pageHeading);
+
+            // main div
             var div = document.createElement("div")
             div.id = "book-wrap";
             div.className = "Book-wrap";
             mainDiv.appendChild(div)
-
+            // inner div
             var leftDiv = document.createElement("div")
             leftDiv.className = "Left-wrap";
             div.appendChild(leftDiv)
             
-
+            // left-side of book
             var img = document.createElement("img")
             img.className = "bookImg";
             img.src = `${apiData.imageLink}`;
             leftDiv.appendChild(img);
-
+            // right side of book
             var rightDiv = document.createElement("div")
             rightDiv.className = "rightWrap"
             div.appendChild(rightDiv)
@@ -112,6 +116,7 @@ fetch("./assets/JSON.json")
             modalContent.appendChild(close);
 
             // button click
+       
                     
             showMoreBtn.onclick = function(){
                 modal.style.display = "block";
@@ -119,12 +124,13 @@ fetch("./assets/JSON.json")
             close.onclick = function(){
                 modal.style.display = "none";
             }
-           window.onclick = function(event) {
-               modal.style.display = "none";
-           }
+            window.onclick =function(event){
+                if(event.target == modal){
+                    modal.style.display="none";
+                }
+            }
+          
         })
         
     });
 
-
- 
