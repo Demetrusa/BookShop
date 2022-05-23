@@ -7,14 +7,21 @@ var container = document.createElement("div")
 container.classList.add('content-container');
 document.getElementsByTagName('body')[0].prepend(container);
 
+var cartTitle =document.createElement("h3")
+cartTitle.className= "cart-title";
+cartTitle.textContent = "Cart"
+cartContainer.appendChild(cartTitle)
+
 var cartBtn = document.createElement("button")
 cartBtn.className ="buyButton"
 cartContainer.appendChild(cartBtn)
 cartBtn.textContent = "buy now";
 
 let formi = document.getElementsByClassName("delivery-form")
+
     cartBtn.onclick = function() {
-        formi.style.display="block";
+        formi[0].style.display = "block";
+        console.log(formi);
     }
     
 
