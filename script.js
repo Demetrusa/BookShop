@@ -176,6 +176,9 @@ fetch("./assets/JSON.json")
             addCartBtn.onclick = function() {
                 cartMainDiv.style.display= "block"
             }
+            deleteFromCart.onclick = function(){
+                cartMainDiv.style.display="none"
+            }
         })
     })
 
