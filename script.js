@@ -1,4 +1,23 @@
 
+var cartContainer = document.createElement("div")
+cartContainer.classList.add("cartContainer");
+document.getElementsByTagName('body')[0].prepend(cartContainer);
+
+var container = document.createElement("div")
+container.classList.add('content-container');
+document.getElementsByTagName('body')[0].prepend(container);
+
+var cartBtn = document.createElement("button")
+cartBtn.className ="buyButton"
+cartContainer.appendChild(cartBtn)
+cartBtn.textContent = "buy now";
+
+let formi = document.getElementsByClassName("delivery-form")
+    cartBtn.onclick = function() {
+        formi.style.display="block";
+    }
+    
+
 
 fetch("./assets/JSON.json")
     .then(response =>{
@@ -19,12 +38,9 @@ fetch("./assets/JSON.json")
             var mainDiv = document.createElement("div")
             mainDiv.classList= "main-div"
             wrap.appendChild(mainDiv);
-            document.getElementsByTagName("body")[0].appendChild(mainDiv);
+            // document.getElementsByTagName("body")[0].appendChild(mainDiv);
+            container.appendChild(mainDiv)
 
-                // var pageHeading = document.createElement("h1")
-                // pageHeading.className = "page-heading";
-                // pageHeading.textContent = "BookShop";
-                // body.appendChild(pageHeading);
 
             // main div
             var div = document.createElement("div")
@@ -65,7 +81,7 @@ fetch("./assets/JSON.json")
             // button section
 
             var buttonDiv = document.createElement("div");
-            buttonDiv.style = "button-div";
+            buttonDiv.className = "button-div";
             rightDiv.appendChild(buttonDiv);
             
 
@@ -84,8 +100,8 @@ fetch("./assets/JSON.json")
             var modal = document.createElement("div");
             modal.className = "modal";
             modal.id = "myModal";
+            container.appendChild(modal)
 
-            document.getElementsByTagName("body")[0].appendChild(modal);
 
             var modalContent = document.createElement("div");
             modalContent.className = "modal-content";
@@ -129,8 +145,51 @@ fetch("./assets/JSON.json")
                     modal.style.display="none";
                 }
             }
-          
-        })
-        
-    });
+            var cartMainDiv =document.createElement("div")
+            cartMainDiv.className = "cart-main-div";
+            cartContainer.appendChild(cartMainDiv)
 
+            var cartdiv = document.createElement("div");
+            cartdiv.className = "cart-div";
+            cartMainDiv.appendChild(cartdiv);
+
+
+            var cartImg = document.createElement("img")
+            cartImg.classList="cartImg";
+            cartImg.style.width ="100px"
+            cartImg.style.paddingLeft = "20px"
+            cartImg.style.paddingTop = "20px"
+            cartImg.style.paddingBottom = "20px"
+            cartImg.src=`${apiData.imageLink}`
+            cartdiv.appendChild(cartImg)
+
+            var cartPrice = document.createElement("h2");
+            cartPrice.classList = "cart-price";
+            cartPrice.textContent = `${apiData.price}`
+            cartdiv.appendChild(cartPrice);
+    
+            var deleteFromCart = document.createElement("p")
+            deleteFromCart.className="delete-from-cart";
+            deleteFromCart.textContent= "X"
+            cartdiv.appendChild(deleteFromCart)
+
+            addCartBtn.onclick = function() {
+                cartMainDiv.style.display= "block"
+            }
+        })
+    })
+
+
+function checkboxFunc() {
+    var a = document.getElementsByClassName("gift");
+    var newvar = 0;
+    var count;
+    for (count = 0; count<a.length; count++) {
+      if (a[count].checked == true) {
+        newvar = newvar + 1;
+      }
+    }
+    if (newvar >=3) {
+      return false;
+    }
+  }
